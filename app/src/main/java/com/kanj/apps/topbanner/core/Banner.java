@@ -3,7 +3,6 @@ package com.kanj.apps.topbanner.core;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import com.kanj.apps.topbanner.R;
 
 /**
  * Created by Kanj Narayan on 22/08/17.
@@ -23,8 +21,9 @@ public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout 
     public T bannerCallbacks;
     protected View inflatedBanner;
 
-    public Banner(Context context) {
+    public Banner(Context context, T bannerCallbacks) {
         this(context, null, 0);
+        this.bannerCallbacks = bannerCallbacks;
     }
 
     public Banner(Context context, @Nullable AttributeSet attrs) {
@@ -77,7 +76,6 @@ public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout 
                 break;
         }
 
-        Log.v("Kanj", "measuring Banner " + parentWidth + "x" + desiredHeight);
         setMeasuredDimension(parentWidth, desiredHeight);
     }
 

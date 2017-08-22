@@ -14,8 +14,7 @@ public class OtherBannerView extends Banner<OtherBannerView.OtherCallbacks> {
     private static final int PADDING_BANNER_DP = 15;
 
     public OtherBannerView(Context context, OtherCallbacks callbacks) {
-        super(context);
-        bannerCallbacks = callbacks;
+        super(context, callbacks);
     }
 
     @Override
