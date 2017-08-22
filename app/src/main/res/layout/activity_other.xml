@@ -73,11 +73,6 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_bottom"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-        <FrameLayout
-            android:id="@+id/banner_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"/>
-    </FrameLayout>
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"/>
 </android.support.constraint.ConstraintLayout>

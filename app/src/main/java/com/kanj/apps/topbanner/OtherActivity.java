@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.kanj.apps.topbanner.core.AbstractTopBannerActivity;
 import com.kanj.apps.topbanner.core.Banner;
+import com.kanj.apps.topbanner.core.InvalidBannerOverlayException;
 
 /**
  * Created by Kanj Narayan on 22/08/17.
@@ -29,11 +30,6 @@ public class OtherActivity extends AbstractTopBannerActivity implements
     }
 
     @Override
-    public int getBannerContainer() {
-        return R.id.banner_container;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bottomText = (TextView) findViewById(R.id.tv_bottom);
@@ -51,7 +47,11 @@ public class OtherActivity extends AbstractTopBannerActivity implements
     }
 
     private void displayBanner() {
-        addViewToBanner(new OtherBannerView(this, this));
+        try {
+            addViewToBanner(new OtherBannerView(this, this));
+        } catch (InvalidBannerOverlayException e) {
+            e.printStackTrace();
+        }
     }
 
     private void hideBanner() {
