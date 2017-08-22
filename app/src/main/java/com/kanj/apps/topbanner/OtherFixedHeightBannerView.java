@@ -2,18 +2,18 @@ package com.kanj.apps.topbanner;
 
 import android.content.Context;
 import android.view.View;
-import com.kanj.apps.topbanner.core.Banner;
+import com.kanj.apps.topbanner.core.FixedHeightBanner;
 import com.kanj.apps.topbanner.core.BaseBannerCallbacks;
 
 /**
  * Created by Kanj Narayan on 22/08/17.
  */
 
-public class OtherBannerView extends Banner<OtherBannerView.OtherCallbacks> {
+public class OtherFixedHeightBannerView extends FixedHeightBanner<OtherFixedHeightBannerView.OtherCallbacks> {
     private static final int HEIGHT_BANNER_DP = 200;
     private static final int PADDING_BANNER_DP = 15;
 
-    public OtherBannerView(Context context, OtherCallbacks callbacks) {
+    public OtherFixedHeightBannerView(Context context, OtherCallbacks callbacks) {
         super(context, callbacks);
     }
 

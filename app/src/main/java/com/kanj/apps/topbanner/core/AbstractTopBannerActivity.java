@@ -34,7 +34,7 @@ public abstract class AbstractTopBannerActivity extends AppCompatActivity {
         }
     }
 
-    public void addViewToBanner(final Banner banner) throws InvalidBannerOverlayException{
+    public void addViewToBanner(final FixedHeightBanner banner) throws InvalidBannerOverlayException{
         if (bannerOverlayContainer != null) {
             bannerOverlayContainer.setVisibility(View.VISIBLE);
             bannerOverlayContainer.setOnClickListener(new View.OnClickListener() {

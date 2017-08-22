@@ -17,20 +17,20 @@ import android.widget.FrameLayout;
  * Created by Kanj Narayan on 22/08/17.
  */
 
-public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout {
+public abstract class FixedHeightBanner<T extends BaseBannerCallbacks> extends FrameLayout {
     public T bannerCallbacks;
     protected View inflatedBanner;
 
-    public Banner(Context context, T bannerCallbacks) {
+    public FixedHeightBanner(Context context, T bannerCallbacks) {
         this(context, null, 0);
         this.bannerCallbacks = bannerCallbacks;
     }
 
-    public Banner(Context context, @Nullable AttributeSet attrs) {
+    public FixedHeightBanner(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public Banner(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FixedHeightBanner(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -94,7 +94,7 @@ public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout 
 
 
     @TargetApi(21)
-    public Banner(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
+    public FixedHeightBanner(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
         int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
