@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.kanj.apps.topbanner.core.AbstractTopBannerActivity;
-import com.kanj.apps.topbanner.core.FixedHeightBanner;
+import com.kanj.apps.topbanner.base.AbstractTopBannerActivity;
+import com.kanj.apps.topbanner.base.FixedHeightBanner;
 import com.kanj.apps.topbanner.core.InvalidBannerOverlayException;
 
 /**

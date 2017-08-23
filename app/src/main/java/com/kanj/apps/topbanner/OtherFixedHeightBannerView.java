@@ -2,7 +2,7 @@ package com.kanj.apps.topbanner;
 
 import android.content.Context;
 import android.view.View;
-import com.kanj.apps.topbanner.core.FixedHeightBanner;
+import com.kanj.apps.topbanner.base.FixedHeightBanner;
 import com.kanj.apps.topbanner.core.BaseBannerCallbacks;
 
 /**
