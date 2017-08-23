@@ -3,24 +3,27 @@ package com.kanj.apps.topbanner;
 import android.content.Context;
 import android.view.View;
 import com.kanj.apps.topbanner.base.FixedHeightBanner;
-import com.kanj.apps.topbanner.core.BaseBannerCallbacks;
+import com.kanj.apps.topbanner.core.OthersBannerCallbacks;
 
 /**
  * Created by Kanj Narayan on 22/08/17.
  */
 
-public class OtherFixedHeightBannerView extends FixedHeightBanner<OtherFixedHeightBannerView.OtherCallbacks> {
+public class OthersFixedHeightBanner extends FixedHeightBanner<OthersBannerCallbacks> {
     private static final int HEIGHT_BANNER_DP = 200;
     private static final int PADDING_BANNER_DP = 15;
 
-    public OtherFixedHeightBannerView(Context context, OtherCallbacks callbacks) {
+    public OthersFixedHeightBanner(Context context, OthersBannerCallbacks callbacks) {
         super(context, callbacks);
     }
 
     @Override
-    protected void init(Context context) {
-        super.init(context);
+    protected int getHeightInDp() {
+        return HEIGHT_BANNER_DP;
+    }
 
+    @Override
+    protected void setupView() {
         findViewById(R.id.banner_text).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,13 +39,23 @@ public class OtherFixedHeightBannerView extends FixedHeightBanner<OtherFixedHeig
     }
 
     @Override
-    protected int getPaddingInDp() {
+    protected int getTopPaddingInDp() {
         return PADDING_BANNER_DP;
     }
 
     @Override
-    protected int getHeightInDp() {
-        return HEIGHT_BANNER_DP;
+    protected int getBottomPaddingInDp() {
+        return PADDING_BANNER_DP;
+    }
+
+    @Override
+    protected int getLeftPaddingInDp() {
+        return PADDING_BANNER_DP;
+    }
+
+    @Override
+    protected int getRightPaddingInDp() {
+        return PADDING_BANNER_DP;
     }
 
     @Override
@@ -53,9 +66,5 @@ public class OtherFixedHeightBannerView extends FixedHeightBanner<OtherFixedHeig
     @Override
     protected int getBannerBackgroundColor() {
         return R.color.colorPrimaryDark;
-    }
-
-    public interface OtherCallbacks extends BaseBannerCallbacks {
-        void bannerTextClicked();
     }
 }

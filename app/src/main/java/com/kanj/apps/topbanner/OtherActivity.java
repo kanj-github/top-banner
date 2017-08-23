@@ -7,17 +7,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.kanj.apps.topbanner.base.AbstractTopBannerActivity;
-import com.kanj.apps.topbanner.base.FixedHeightBanner;
 import com.kanj.apps.topbanner.core.InvalidBannerOverlayException;
+import com.kanj.apps.topbanner.core.OthersBannerCallbacks;
 
 /**
  * Created by Kanj Narayan on 22/08/17.
  */
 
-public class OtherActivity extends AbstractTopBannerActivity implements
-    OtherFixedHeightBannerView.OtherCallbacks {
+public class OtherActivity extends AbstractTopBannerActivity implements OthersBannerCallbacks {
     private TextView bottomText;
-    private OtherFixedHeightBannerView mBanner;
+    private OthersFixedHeightBanner mBanner;
 
     @Override
     public int getMainContainer() {
@@ -48,7 +47,7 @@ public class OtherActivity extends AbstractTopBannerActivity implements
 
     private void displayBanner() {
         try {
-            addViewToBanner(new OtherFixedHeightBannerView(this, this));
+            addViewToBanner(new OthersFixedHeightBanner(this, this));
         } catch (InvalidBannerOverlayException e) {
             e.printStackTrace();
         }
@@ -63,10 +62,8 @@ public class OtherActivity extends AbstractTopBannerActivity implements
     }
 
     @Override
-    public void onBannerDisplayed(FixedHeightBanner banner) {
-        if (banner instanceof OtherFixedHeightBannerView) {
-            mBanner = (OtherFixedHeightBannerView) banner;
-        }
+    public void onBannerDisplayed(OthersFixedHeightBanner banner) {
+        mBanner = banner;
     }
 
     @Override

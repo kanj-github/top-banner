@@ -1,7 +1,5 @@
 package com.kanj.apps.topbanner.core;
 
-import com.kanj.apps.topbanner.base.FixedHeightBanner;
-
 /**
  * Created by Kanj Narayan on 22/08/17.
  */

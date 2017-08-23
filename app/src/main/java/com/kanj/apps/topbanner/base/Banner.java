@@ -1,8 +1,8 @@
 package com.kanj.apps.topbanner.base;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -25,26 +25,28 @@ public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout 
     public T bannerCallbacks;
     protected View inflatedBanner;
 
-    public Banner(@NonNull Context context, T bannerCallbacks) {
-        this(context, null, 0);
-        this.bannerCallbacks = bannerCallbacks;
+    public Banner(Context context, T bannerCallbacks) {
+        this(context, null, 0, bannerCallbacks);
     }
 
-    public Banner(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+    public Banner(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0, null);
     }
 
-    public Banner(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public Banner(Context context, @Nullable AttributeSet attrs, int defStyleAttr, T bannerCallbacks) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init(context, bannerCallbacks);
     }
 
-    protected void init(Context context) {
-        int padding = convertDpToPx(getPaddingInDp());
-        setPadding(padding, padding, padding, padding);
+    protected void init(Context context, T bannerCallbacks) {
+        setPadding(
+            convertDpToPx(getLeftPaddingInDp()),
+            convertDpToPx(getTopPaddingInDp()),
+            convertDpToPx(getRightPaddingInDp()),
+            convertDpToPx(getBottomPaddingInDp())
+        );
         setBackgroundColor(ContextCompat.getColor(context, getBannerBackgroundColor()));
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                convertDpToPx(getHeightInDp()));
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, getLayoutHeight());
         setLayoutParams(params);
 
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -56,7 +58,21 @@ public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout 
                 Log.v("Kanj", "banner view clicked");
             }
         });
+
+        this.bannerCallbacks = bannerCallbacks;
+        setupView();
     }
+
+    protected abstract void setupView();
+
+    protected int getLayoutHeight() {
+        return LayoutParams.WRAP_CONTENT;
+    }
+
+    protected abstract int getTopPaddingInDp();
+    protected abstract int getBottomPaddingInDp();
+    protected abstract int getLeftPaddingInDp();
+    protected abstract int getRightPaddingInDp();
 
     /**
      *  Return a layout with a merge root element. It will be inflated in a FrameLayout
@@ -67,17 +83,20 @@ public abstract class Banner<T extends BaseBannerCallbacks> extends FrameLayout 
     @ColorRes
     protected abstract int getBannerBackgroundColor();
 
-    protected abstract int getPaddingInDp();
 
-    protected abstract int getHeightInDp();
-
-    protected int convertDpToPx(int dp) {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    @TargetApi(21)
+    public Banner(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
+        int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         bannerCallbacks.onBannerDisplayed(this);
+    }
+
+    protected int convertDpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }

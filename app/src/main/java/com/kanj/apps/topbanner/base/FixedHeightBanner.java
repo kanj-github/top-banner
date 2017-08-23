@@ -1,18 +1,7 @@
 package com.kanj.apps.topbanner.base;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
-import android.support.annotation.ColorRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
 
 import com.kanj.apps.topbanner.core.BaseBannerCallbacks;
 
@@ -50,5 +39,10 @@ public abstract class FixedHeightBanner<T extends BaseBannerCallbacks> extends B
         setMeasuredDimension(parentWidth, desiredHeight);
     }
 
+    @Override
+    protected int getLayoutHeight() {
+        return convertDpToPx(getHeightInDp());
+    }
 
+    protected abstract int getHeightInDp();
 }
