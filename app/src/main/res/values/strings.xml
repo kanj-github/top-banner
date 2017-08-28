@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TopBanner</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="click_desc">Show banner using %1$s.addView</string>
 </resources>

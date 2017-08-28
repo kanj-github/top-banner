@@ -3,7 +3,11 @@ package com.kanj.apps.topbanner;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +17,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView tv = (TextView) findViewById(R.id.tv_relative_size_span);
+
+        String formattableText = getString(R.string.click_desc);
+        String largerText = "WindowManager";
+        String fullText = String.format(formattableText, largerText);
+
+        SpannableString spannableString = new SpannableString(fullText);
+        int index = fullText.indexOf(largerText);
+        spannableString.setSpan(new RelativeSizeSpan(1.3f), index,
+            index + largerText.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        tv.setText(spannableString);
     }
 
     public void onTopButtonClicked(View v) {
