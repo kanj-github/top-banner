@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTopButtonClicked(View v) {
-        BannerView.show(this, new BannerView.Callbacks() {
+        BannerView.Companion.show(this, new BannerView.Callbacks() {
             @Override
             public void onDisplayed(BannerView bannerView) {
                 banner = bannerView;
