@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.view_banner.view.*
  *  Banner using WindowManager
  *  Problems-
  *  1. Can't handle touch outside the banner
+ *  2. Can't handle back button to close this
+ *  3. Can't stop if from going behind status bar (in L)
  */
 class BannerView(val mContext: Context, val mCallbacks: Callbacks) : FrameLayout(mContext) {
     private val windowManager = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
